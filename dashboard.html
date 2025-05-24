@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+ <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  body {
+    background: linear-gradient(135deg, #4f8cff 0%, #a259ff 100%);
+    color: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+  }
+
+  .sidebar {
+    width: 230px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6c63ff 0%, #4f8cff 100%);
+    border-right: 1.5px solid #a259ff;
+    padding: 36px 18px 24px 18px;
+    box-shadow: 2px 0 20px rgba(76, 140, 255, 0.10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 0;
+  }
+
+  .sidebar h2 {
+    color: #fff;
+    margin-bottom: 38px;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(76, 140, 255, 0.18);
+  }
+
+  .sidebar button {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    padding: 12px 0;
+    margin-bottom: 14px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(76, 140, 255, 0.10);
+    gap: 8px;
+  }
+
+  .sidebar button i {
+    color: #ffe082;
+    font-size: 1.1rem;
+    margin-right: 8px;
+  }
+
+  .sidebar button:hover, .sidebar button.active {
+    background: linear-gradient(135deg, #a259ff 0%, #4f8cff 100%);
+    color: #ffe082;
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  .main {
+    flex: 1;
+    padding: 40px 5vw 40px 5vw;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .header {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: #ffe082;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(76, 140, 255, 0.18);
+    position: sticky;
+    top: 0;
+    background: rgba(34,34,54,0.7);
+    padding: 18px 0 18px 12px;
+    border-radius: 18px;
+    z-index: 2;
+    backdrop-filter: blur(2px);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 28px;
+    margin-top: 10px;
+  }
+
+  .card {
+    background: rgba(34, 34, 54, 0.92);
+    padding: 32px 24px;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px rgba(80, 80, 180, 0.18);
+    border: 1.5px solid #6c63ff;
+    transition: box-shadow 0.3s, transform 0.2s;
+    color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 120px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card h3 {
+    margin-bottom: 12px;
+    color: #a259ff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card h3 i {
+    color: #ffe082;
+    font-size: 1.3rem;
+    margin-right: 6px;
+  }
+
+  .card p {
+    font-size: 1.05rem;
+    color: #e0d8fa;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .main {
+      padding: 24px 2vw;
+    }
+    .card-grid {
+      gap: 18px;
+    }
+    .sidebar {
+      width: 100px;
+      padding: 18px 6px;
+    }
+    .sidebar h2 {
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+    .sidebar button {
+      font-size: 0.95rem;
+      padding: 8px 0;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .sidebar {
+      display: none;
+    }
+    .main {
+      padding: 16px 2vw;
+    }
+    .header {
+      font-size: 1.2rem;
+      padding: 10px 0 10px 8px;
+    }
+    .card-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .card {
+      padding: 18px 10px;
+      border-radius: 14px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Admin</h2>
+    <button><i class="fa fa-tachometer-alt"></i> Dashboard</button>
+    <button><i class="fa fa-users"></i> Users</button>
+    <button><i class="fa fa-cogs"></i> Settings</button>
+    <button onclick="window.location.href='index.html'"><i class="fa fa-sign-out-alt"></i> Logout</button>
+  </div>
+
+  <div class="main">
+  <div class="header">Dashboard Overview</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3><i class="fa fa-user"></i> Total Users</h3>
+      <p>1,254 users registered.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa fa-chart-line"></i> Site Analytics</h3>
+      <p>Today’s visitors: 856 | Bounce rate: 37%</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa fa-bell"></i> Notifications</h3>
+      <p>No new notifications.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

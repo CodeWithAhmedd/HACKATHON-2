@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Golden Spoon - Luxury Dining</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Pacifico&family=Lato:wght@400;700&display=swap');
+
+body, html {
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+  background: linear-gradient(135deg, #4e342e 0%, #a1887f 100%);
+  color: #f5eee6;
+  scroll-behavior: smooth;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  left: 0; right: 0;
+  background: rgba(44, 32, 22, 0.97);
+  backdrop-filter: blur(6px);
+  padding: 28px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  border-bottom: 2px solid #bfa27a;
+  box-shadow: 0 4px 24px rgba(44,32,22,0.13);
+}
+header .logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.4rem;
+  color: #ffe0b2;
+  letter-spacing: 2px;
+  user-select: none;
+  cursor: default;
+  text-shadow: 0 2px 8px #6d4c41;
+}
+nav a {
+  color: #ffe0b2;
+  text-decoration: none;
+  margin-left: 36px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+  position: relative;
+  letter-spacing: 1px;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2.5px;
+  background: #bfa27a;
+  bottom: -6px;
+  left: 0;
+  transition: width 0.3s;
+}
+nav a:hover,
+nav a:focus {
+  color: #bfa27a;
+}
+nav a:hover::after,
+nav a:focus::after {
+  width: 100%;
+}
+
+main {
+  padding-top: 100px;
+  padding-bottom: 70px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  background: linear-gradient(120deg, #6d4c41 60%, #ffe0b2 100%);
+  border-radius: 28px;
+  box-shadow: 0 12px 45px rgba(111, 78, 55, 0.18);
+  padding: 60px 40px;
+  margin-bottom: 40px;
+}
+.hero-text {
+  flex: 1 1 480px;
+}
+.hero-text h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 3.2rem;
+  color: #ffe0b2;
+  margin-bottom: 18px;
+  line-height: 1.1;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #6d4c41;
+}
+.hero-text p {
+  font-size: 1.3rem;
+  color: #f5eee6;
+  margin-bottom: 38px;
+  max-width: 480px;
+  line-height: 1.5;
+  font-family: 'Lato', sans-serif;
+}
+.btn-primary {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 15px 44px;
+  border-radius: 30px;
+  border: 2.5px solid #bfa27a;
+  background: #ffe0b2;
+  color: #6d4c41;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 0 15px rgba(191, 162, 122, 0.18);
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #bfa27a;
+  color: #fff;
+  box-shadow: 0 0 25px #ffe0b2;
+}
+.hero-image {
+  flex: 1 1 420px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(111, 78, 55, 0.18);
+  background: #fff3e0;
+}
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 24px;
+  object-fit: cover;
+  filter: brightness(0.96) contrast(1.04);
+}
+
+/* Carousel Section */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 340px;
+  margin: 50px 0 40px 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background: linear-gradient(120deg, #4e342e 60%, #ffe0b2 100%);
+  box-shadow: 0 8px 32px rgba(111,78,55,0.13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slides {
+  display: flex;
+  width: 500%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(.77,0,.18,1);
+}
+.slide {
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.1rem;
+  color: #6d4c41;
+  font-family: 'Playfair Display', serif;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 340px;
+  transition: filter 0.3s;
+  filter: brightness(0.97) contrast(1.08);
+  padding: 0 30px;
+  text-align: center;
+}
+.slide > * {
+  position: relative;
+  z-index: 2;
+}
+.nav-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+.nav-buttons button {
+  background: rgba(111,78,55,0.85);
+  border: none;
+  color: #ffe0b2;
+  font-size: 2rem;
+  padding: 10px 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(111,78,55,0.13);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  pointer-events: all;
+  outline: none;
+}
+.nav-buttons button:hover,
+.nav-buttons button:focus {
+  background: #ffe0b2;
+  color: #6d4c41;
+  transform: scale(1.08);
+}
+.dots {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 13px;
+  z-index: 12;
+}
+.dots span {
+  width: 15px;
+  height: 15px;
+  background: #bfa27a;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2.5px solid #ffe0b2;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+  display: block;
+}
+.dots .active {
+  background: #ffe0b2;
+  border-color: #6d4c41;
+  transform: scale(1.18);
+}
+
+/* Menu Section */
+#menu {
+  margin-top: 70px;
+  text-align: center;
+}
+#menu h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.5rem;
+  margin-bottom: 18px;
+  color: #ffe0b2;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #6d4c41;
+}
+#menu p {
+  color: #f5eee6;
+  font-size: 1.15rem;
+  max-width: 680px;
+  margin: 0 auto 50px auto;
+  line-height: 1.5;
+}
+.menu-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  padding: 0 10px;
+}
+.card {
+  background: linear-gradient(120deg, #6d4c41 70%, #ffe0b2 100%);
+  border-radius: 22px;
+  box-shadow: 0 8px 30px rgba(111, 78, 55, 0.13);
+  overflow: hidden;
+  border: 1.5px solid #bfa27a;
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: default;
+}
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 45px rgba(191, 162, 122, 0.25);
+}
+.card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-bottom: 1px solid #bfa27a;
+  filter: brightness(0.93);
+}
+.card-content {
+  padding: 22px 22px 30px 22px;
+  text-align: left;
+}
+.card-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #ffe0b2;
+  letter-spacing: 1px;
+}
+.card-content p {
+  font-size: 1rem;
+  color: #f5eee6;
+  line-height: 1.5;
+}
+.price {
+  margin-top: 14px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ffe0b2;
+}
+
+/* Testimonials Section */
+#testimonials {
+  margin-top: 70px;
+  text-align: center;
+}
+#testimonials h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.2rem;
+  color: #ffe0b2;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #6d4c41;
+}
+#testimonials blockquote {
+  background: linear-gradient(120deg, #6d4c41 70%, #ffe0b2 100%);
+  padding: 25px 30px;
+  border-radius: 20px;
+  max-width: 320px;
+  box-shadow: 0 8px 30px rgba(111,78,55,0.12);
+  color: #f5eee6;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  position: relative;
+  margin: 0 auto 18px auto;
+  border: 1.5px solid #bfa27a;
+}
+#testimonials blockquote footer {
+  margin-top: 15px;
+  font-weight:700;
+  color:#ffe0b2;
+  font-style: normal;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Gallery Section */
+#gallery {
+  margin-top: 80px;
+  text-align: center;
+}
+#gallery h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.2rem;
+  color: #ffe0b2;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #6d4c41;
+}
+#gallery .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 22px;
+  padding: 0 15px;
+}
+#gallery img {
+  width: 100%;
+  border-radius: 18px;
+  filter: brightness(0.93);
+  box-shadow: 0 6px 20px rgba(111,78,55,0.18);
+  object-fit: cover;
+  height: 150px;
+  border: 1.5px solid #bfa27a;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 28px 20px;
+  border-top: 2px solid #bfa27a;
+  color: #ffe0b2;
+  font-size: 1.05rem;
+  font-family: 'Playfair Display', serif;
+  background: rgba(44,32,22,0.97);
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  header {
+    padding: 18px 10px;
+  }
+  nav a {
+    margin-left: 18px;
+    font-size: 1rem;
+  }
+  .hero {
+    flex-direction: column;
+    padding: 35px 18px;
+    gap: 25px;
+  }
+  .hero-text h1 {
+    font-size: 2.1rem;
+  }
+  .hero-text p {
+    font-size: 1.05rem;
+    max-width: 100%;
+  }
+  .btn-primary {
+    font-size: 1rem;
+    padding: 12px 30px;
+  }
+  .menu-cards {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+  }
+}
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    padding: 12px 4px;
+  }
+  nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    margin-left: 0;
+    font-size: 0.95rem;
+  }
+  .hero-text h1 {
+    font-size: 1.3rem;
+  }
+  .hero-text p {
+    font-size: 0.95rem;
+  }
+  .btn-primary {
+    font-size: 0.95rem;
+    padding: 10px 18px;
+  }
+  .menu-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 2px;
+  }
+  #gallery .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 2px;
+  }
+  footer {
+    font-size: 0.95rem;
+    padding: 14px 4px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" aria-label="Dunk n Bunk Coffee Shop Logo">Dunk n Bunk</div>
+  <nav aria-label="Primary navigation">
+    <a href="#menu">Menu</a>
+    <a href="#contact">Contact</a>  
+    <a href="#testimonials">Testimonials</a>
+    <a onclick="window.location.href='index.html'">Logout</a>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero" aria-label="Welcome section">
+    <div class="hero-text">
+      <h1>Welcome to Dunk n Bunk</h1>
+      <p>Experience the art of coffee and cozy vibes. Sip, relax, and enjoy our handcrafted brews and fresh bakery treats.</p>
+      <a href="#menu" class="btn-primary">See Our Coffee Menu</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Coffee and pastries" />
+    </div>
+  </section>
+
+  <!-- Carousel Section -->
+  <div class="carousel">
+    <div class="slides" id="slides">
+      <div class="slide">
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:2.2em;margin-bottom:10px;">Signature Cappuccino</h2>
+          <p style="font-size:1.1em;">Rich espresso, velvety milk, and a touch of cocoa.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:2.2em;margin-bottom:10px;">Classic Latte</h2>
+          <p style="font-size:1.1em;">Smooth and creamy, topped with beautiful latte art.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:2.2em;margin-bottom:10px;">Fresh Croissants</h2>
+          <p style="font-size:1.1em;">Buttery, flaky croissants baked fresh every morning.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:2.2em;margin-bottom:10px;">Iced Mocha</h2>
+          <p style="font-size:1.1em;">Chilled espresso, chocolate, and milk over ice.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:2.2em;margin-bottom:10px;">Barista’s Choice</h2>
+          <p style="font-size:1.1em;">Ask for today’s special blend or seasonal drink!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button onclick="prevSlide()" aria-label="Previous Slide">❮</button>
+      <button onclick="nextSlide()" aria-label="Next Slide">❯</button>
+    </div>
+
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <section id="menu" aria-label="Menu section">
+    <h2>Our Coffee & Treats</h2>
+    <p>Discover our best-selling coffees and fresh bakery items, made with love every day.</p>
+    <div class="menu-cards">
+      <article class="card" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Cappuccino with latte art" />
+        <div class="card-content">
+          <h3>Cappuccino</h3>
+          <p>Espresso, steamed milk, and foam, dusted with cocoa powder.</p>
+          <div class="price">$4</div>
+        </div>
+      </article>
+      <article class="card" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Classic Latte" />
+        <div class="card-content">
+          <h3>Classic Latte</h3>
+          <p>Smooth espresso with steamed milk and a touch of sweetness.</p>
+          <div class="price">$4.5</div>
+        </div>
+      </article>
+      <article class="card" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Fresh Croissant" />
+        <div class="card-content">
+          <h3>Fresh Croissant</h3>
+          <p>Buttery, flaky, and baked fresh every morning.</p>
+          <div class="price">$3</div>
+        </div>
+      </article>
+      <article class="card" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Iced Mocha" />
+        <div class="card-content">
+          <h3>Iced Mocha</h3>
+          <p>Espresso, chocolate, and milk served over ice for a refreshing treat.</p>
+          <div class="price">$5</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" aria-label="Customer Testimonials" style="margin-top: 80px; text-align:center;">
+  <h2 style="font-family:'Playfair Display', serif; font-size: 38px; color: #c9a66b; margin-bottom: 25px; letter-spacing: 2px;">What Our Customers Say</h2>
+  <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
+    <blockquote tabindex="0" style="background:#282828; padding: 25px 30px; border-radius: 20px; max-width: 320px; box-shadow: 0 8px 30px rgba(201,166,107,0.12); color:#d9d7ce; font-style: italic; font-size: 17px; line-height: 1.5; position: relative;">
+      "Best cappuccino in town! The cozy atmosphere makes it my favorite spot to unwind."
+      <footer style="margin-top: 15px; font-weight:700; color:#c9a66b; font-style: normal;">— Priya S.</footer>
+    </blockquote>
+    <blockquote tabindex="0" style="background:#282828; padding: 25px 30px; border-radius: 20px; max-width: 320px; box-shadow: 0 8px 30px rgba(201,166,107,0.12); color:#d9d7ce; font-style: italic; font-size: 17px; line-height: 1.5; position: relative;">
+      "Their croissants are always fresh and the staff is super friendly!"
+      <footer style="margin-top: 15px; font-weight:700; color:#c9a66b; font-style: normal;">— Alex G.</footer>
+    </blockquote>
+    <blockquote tabindex="0" style="background:#282828; padding: 25px 30px; border-radius: 20px; max-width: 320px; box-shadow: 0 8px 30px rgba(201,166,107,0.12); color:#d9d7ce; font-style: italic; font-size: 17px; line-height: 1.5; position: relative;">
+      "Love the variety of drinks and the relaxing vibe. Highly recommend Dunk n Bunk!"
+      <footer style="margin-top: 15px; font-weight:700; color:#c9a66b; font-style: normal;">— Samira K.</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" aria-label="Photo Gallery" style="margin-top: 90px; text-align:center;">
+  <h2 style="font-family:'Playfair Display', serif; font-size: 38px; color: #c9a66b; margin-bottom: 30px; letter-spacing: 2px;">Gallery</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 22px; padding: 0 15px;">
+    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Cappuccino art" style="width:100%; border-radius: 20px; filter: brightness(0.92); box-shadow: 0 6px 20px rgba(201,166,107,0.18); object-fit: cover; height: 160px;">
+    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Latte art" style="width:100%; border-radius: 20px; filter: brightness(0.92); box-shadow: 0 6px 20px rgba(201,166,107,0.18); object-fit: cover; height: 160px;">
+    <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=600&q=80" alt="Iced mocha" style="width:100%; border-radius: 20px; filter: brightness(0.92); box-shadow: 0 6px 20px rgba(201,166,107,0.18); object-fit: cover; height: 160px;">
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Fresh croissant" style="width:100%; border-radius: 20px; filter: brightness(0.92); box-shadow: 0 6px 20px rgba(201,166,107,0.18); object-fit: cover; height: 160px;">
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 Dunk n Bunk. All rights reserved. &nbsp;&nbsp;
+  <a href="https://www.facebook.com" target="_blank" rel="noopener" style="color:#c9a66b; text-decoration:none; margin:0 10px;" aria-label="Facebook">&#x25B6; FB</a> |
+  <a href="https://www.instagram.com" target="_blank" rel="noopener" style="color:#c9a66b; text-decoration:none; margin:0 10px;" aria-label="Instagram">&#x25B6; IG</a> |
+  <a href="https://www.twitter.com" target="_blank" rel="noopener" style="color:#c9a66b; text-decoration:none; margin:0 10px;" aria-label="Twitter">&#x25B6; TW</a>
+</footer>
+
+<script>
+let currentSlide = 0;
+const slides = document.getElementById("slides");
+const dotsContainer = document.getElementById("dots");
+const totalSlides = slides.children.length;
+
+// Create dots
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement("span");
+  dot.onclick = () => moveToSlide(i);
+  dotsContainer.appendChild(dot);
+}
+
+function updateCarousel() {
+  slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+  Array.from(dotsContainer.children).forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentSlide);
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateCarousel();
+}
+
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  updateCarousel();
+}
+
+function moveToSlide(index) {
+  currentSlide = index;
+  updateCarousel();
+}
+
+updateCarousel();
+setInterval(nextSlide, 5000); // Auto-slide every 5 sec
+</script>
+</body>
+</html>

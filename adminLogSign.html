@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login & Signup Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #4f8cff 0%, #a259ff 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #f4f4f4;
+    }
+
+    .container {
+      width: 370px;
+      background: rgba(34, 34, 54, 0.95);
+      padding: 50px 30px;
+      border-radius: 28px;
+      box-shadow: 0 8px 32px rgba(80, 80, 180, 0.25);
+      border: 1.5px solid #6c63ff;
+      text-align: center;
+      backdrop-filter: blur(4px);
+      margin-bottom: 18px;
+      transition: box-shadow 0.3s;
+    }
+
+    .container:hover {
+      box-shadow: 0 12px 40px rgba(162, 89, 255, 0.25);
+    }
+
+    h2 {
+      color: #a259ff;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-shadow: 0 2px 8px rgba(76, 140, 255, 0.15);
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-group i {
+      margin-right: 10px;
+      color: #6c63ff;
+      font-size: 18px;
+      min-width: 22px;
+      text-align: center;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 13px 12px;
+      border: 1.5px solid #6c63ff;
+      border-radius: 8px;
+      background: rgba(44, 44, 74, 0.85);
+      font-size: 15px;
+      color: #f4f4f4;
+      transition: border 0.2s, background 0.2s;
+    }
+
+    .input-group input:focus {
+      border: 1.5px solid #a259ff;
+      outline: none;
+      background: rgba(76, 140, 255, 0.08);
+    }
+
+    .btn {
+      width: 100%;
+      background: linear-gradient(135deg, #6c63ff 0%, #4f8cff 100%);
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 8px rgba(76, 140, 255, 0.18);
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #4f8cff 0%, #a259ff 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 4px 16px rgba(162, 89, 255, 0.25);
+    }
+
+    .toggle {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 15px;
+      color: #e0d8fa;
+    }
+
+    .toggle a {
+      color: #a259ff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .toggle a:hover {
+      text-decoration: underline;
+      color: #6c63ff;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: 92vw;
+        padding: 22px 8vw;
+      }
+    }   
+  </style>
+</head>
+<body>
+
+  <div class="container" id="loginBox">
+    <h2>Login as Admin</h2>
+    <form>
+      <div class="input-group">
+        <i class="fa fa-envelope"></i>
+        <input placeholder="Email or Username" required>
+      </div>
+      <div class="input-group">
+        <i class="fa fa-lock"></i>
+        <input type="password" placeholder="Password" required>
+      </div>
+      <button class="btn" type="submit">Login as Admin</button>
+    </form>
+    <div class="toggle">
+      Don't have an account? <a href="#" onclick="showSignup()">Sign up</a>
+    </div>
+  </div>
+
+  <div class="container" id="signupBox" style="display:none;">
+    <h2>Sign Up as Admin</h2>
+    <form>
+      <div class="input-group">
+        <i class="fa fa-user"></i>
+        <input type="text" placeholder="Restaurant Name" required>
+      </div>
+      <div class="input-group">
+        <i class="fa fa-envelope"></i>
+        <input id="signEmail" placeholder="Email or Username" required>
+      </div>
+      <div class="input-group">
+        <i class="fa fa-lock"></i>
+        <input type="password" placeholder="Password" required>
+      </div>
+      <button class="btn" type="submit">Sign Up as Admin</button>
+    </form>
+    <div class="toggle">
+      Already have an account? <a href="#" onclick="showLogin()">Login</a>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script src="adminLogSign.js">
+    
+    
+    
+  </script>
+
+</body>
+</html>
